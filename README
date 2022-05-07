@@ -1,0 +1,37 @@
+
+
+
+1. Chúng ta phải làm giống cái ./prisma
+-tạo dự án thư mục cho prisma: prisma1 init prisma, mặc dù nó không tạo đc :)
+-tạo ra file docker-composer.yml vào https://v1.prisma.io/docs/1.34/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/ để xem cách điền
+-file datamodel.graphql đây là file database nó viết theo kiểu graphql nhưng vẩn có thể dùng thêm nhiều trường như @unique @relation @default
+-tạo file prisma.yml có endpoint là cái localhost start trên docker khi chạy mặt định của cái đó là localhost 4466
+-cài đặt env để PRISMA_MANAGEMENT_API_SECRET="Your-site" và bên docker cái managementApiSecret phải giống vậy
+-điền thông tin cho database nếu có
+-sao đó chạy lệnh docker-compose up, bình thường có -d nhưng tui dùng bị lỗi
+-xong xui thì prisma1 deploy nó sẽ create database trong sql,  prisma1 deploy --force để thay đồi database, prisma delete để xóa hết tất cả dử liệu
+
+2. cấu hình graphql yoga kết nối với prisma docker
+-đầu tiên làm giống cách 0
+-sao đó tạo file codegen.yml 
+mặc định: 
+schema: http://localhost:4466
+ extensions:
+  codegen:
+    generates:
+      ./src/generated/prisma.graphql:
+        plugins:
+          - schema-ast
+-tải các thư viện như @graphql-codegen/cli, @graphql-codegen/schema-ast, prisma-binding
+-sao đó chạy lệnh "graphql-codegen --config ./codegen.yml" có thể để trong script, nó tạo ra 1 modal dựa vào database trong sql
+-prisma-binding:
+
+const prisma = new Prisma({
+    typeDefs: "src/generated/prisma.graphql",
+    endpoint: 'http://localhost:4466',
+    secret:"bang"      //đặt cái này vào nếu trong thư mục prisma -> prisma.yml có secrect, nếu muốn sử dụng cho admin thì rỏ lệnh prisma1 token vào localhost://4466 bỏ token vào header => "Authorization" : "Bearer token"
+})
+
+-tác dụng của nó là kết nối prisma1 graphql và có thể thao tác nhanh, dùng nó cùng với graphql yoga để làm client cho người dùng, vì nó cũng nhưng middleware
+-đối với graphql prisma1 thì nó sẽ là thao tác cho admin
+-để kích hoạt cho graphql yoga thì bỏ prisma đó vào content sử dụng có thể xem trong resolvers
