@@ -9,6 +9,7 @@
     "get-schema-2": "graphql-codegen --config ./codegen.yml"
   },
   "dependencies": {
+    "@graphql-tools/schema": "^8.3.11",
     "@graphql-yoga/node": "^2.2.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -16,7 +17,9 @@
     "bcryptjs": "^2.4.3",
     "graphql": "14.6.0",
     "graphql-cli": "^4.1.0",
+    "graphql-import": "^1.0.2",
     "graphql-subscriptions": "^2.0.0",
+    "graphql-tools": "^8.2.9",
     "graphql-yoga": "^2.3.0",
     "jsonwebtoken": "^8.5.1",
     "prisma-binding": "2.1.1"

@@ -1,14 +1,14 @@
 import { GraphQLYogaError } from 'graphql-yoga';
 import bcrypt from 'bcryptjs';
+import generatedToken from '../utils/genarateToken';
 import getUserId from '../utils/getUser';
+import hashPassword from '../utils/hashPassword';
 import jwt from 'jsonwebtoken';
 
 const Mutation = {
   async createUser(parent, args, { db, prisma }, info) {
-    if (args.data.password.length < 8) {
-      throw new GraphQLYogaError('Password must be 8 characters or longer!');
-    }
-    args.data.password = bcrypt.hashSync(args.data.password, 10);
+   
+    args.data.password =  hashPassword(args.data.password);
     //do có token nên info nó không hiểu, nếu không để info nó sẽ lấy hết
 
     const user = await prisma.mutation.createUser({
@@ -16,12 +16,7 @@ const Mutation = {
     });
     return {
       user,
-      token: jwt.sign(
-        {
-          userId: user.id,
-        },
-        'secret'
-      ),
+      token: generatedToken(user.id),
     };
   },
 
@@ -43,12 +38,7 @@ const Mutation = {
 
     return {
       user,
-      token: jwt.sign(
-        {
-          userId: user.id,
-        },
-        'secret'
-      ),
+      token: generatedToken(user.id),
     };
   },
 
@@ -117,13 +107,12 @@ const Mutation = {
     const commentExsist = prisma.exists.Comment({
       id: args.id,
       author: {
-        id: userId
-      }
-    })
+        id: userId,
+      },
+    });
 
-    if (!commentExsist)
-    {
-      throw new GraphQLYogaError("Comment not exists")
+    if (!commentExsist) {
+      throw new GraphQLYogaError('Comment not exists');
     }
     return prisma.mutation.deleteUser(
       {
@@ -181,6 +170,10 @@ const Mutation = {
   },
   async updateUser(parent, args, { db, prisma, request }, info) {
     const userId = getUserId(request);
+    if (typeof args.data.password === 'string')
+    {
+      args.data.password = hashPassword(args.data.password)
+    }
     return prisma.mutation.updateUser(
       {
         where: {
@@ -194,15 +187,29 @@ const Mutation = {
   async updatePost(parent, args, { db, pubsub, prisma, request }, info) {
     const userId = getUserId(request);
     const postExsist = await prisma.exists.Post({
-      where: {
         id: args.id,
         author: {
           id: userId,
         },
-      },
     });
+
+    const isPublished = await prisma.exists.Post({
+      id: args.id,
+      published: true,
+    });
+    console.log(isPublished)
+    
     if (!postExsist) {
       throw new GraphQLYogaError('Post not exists');
+    }
+    if (isPublished && args.data.published === false) {
+      await prisma.mutation.deleteManyComments({
+        where: {
+          post: {
+            id: args.id,
+          },
+        },
+      });
     }
     return prisma.mutation.updatePost(
       {

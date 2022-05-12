@@ -5,11 +5,11 @@ import jwt from "jsonwebtoken"
 
 const getUserId = (request,requereAutth = true) =>
 {
-
-  const header = request.request.headers.get('authorization')
+  // request.connection.context.Authorization khi getUserId từ Subscription
+  const header = request.request ? request.request.headers.get('authorization') : request.connection.context.Authorization
 
   if (header)
-  {
+  { 
     const token = header.replace("Bearer ", "")
     const decoded = jwt.verify(token, "secret")
     return decoded.userId

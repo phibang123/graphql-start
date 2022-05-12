@@ -4,37 +4,31 @@ import {
 	GraphQLYogaError,
 	createServer
 } from "graphql-yoga"
+import {fragmentReplacements, resolvers} from "./resolvers/index"
 
-import Comment from "./resolvers/Comment"
-import Mutation from "./resolvers/Mutation"
-import Post from "./resolvers/Post"
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import {
 	PubSub
 } from 'graphql-subscriptions'
-import Query from "./resolvers/Query"
-import Subscription from "./resolvers/Subscription"
-import User from "./resolvers/User"
+import { addResolversToSchema } from '@graphql-tools/schema'
 import db from "./data/data"
-import fs from "fs"
+import { join } from 'path'
+import { loadSchemaSync } from '@graphql-tools/load'
 import prisma from "./prisma"
 
-const typeDefs = fs.readFileSync('./src/graphql/schema.graphql', 'utf8');
+const typeDefs = loadSchemaSync(join(__dirname, 'graphql/schema.graphql'), { loaders: [new GraphQLFileLoader()] })
 
+// const schemaWithResolvers = addResolversToSchema({
+//   typeDefs,
+//   resolvers
+// })
 const pubsub = new PubSub()
-
 
 
 const server = new createServer({
 	schema: {
 		typeDefs,
-		resolvers: {
-			Query,
-			Mutation,
-			Subscription,
-			User,
-			Post,
-			Comment
-		},
+		resolvers
 	},
 	//context có thể là obj hoặc là function
 	//function thì tham số nhận vào là request
@@ -46,7 +40,8 @@ const server = new createServer({
 			prisma,
 			request
 		}
-	}
+	},
+	fragmentReplacements
 });
 
 server.start(() => {
