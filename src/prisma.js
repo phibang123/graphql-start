@@ -1,12 +1,11 @@
 import { Prisma } from 'prisma-binding'
 import { fragmentReplacements } from "./resolvers/index.js"
-import fs from "fs"
-const typeDefs = fs.readFileSync('./src/generated/prisma.graphql', 'utf8');
 
+// const typeDefs = fs.readFileSync('./src/generated/prisma.graphql', 'utf8');
 
 const prisma = new Prisma({
     typeDefs: "src/generated/prisma.graphql",
-    endpoint: 'http://localhost:4466',
+    endpoint: process.env.PRISMA_ENDPOINT,
     secret: "bang",
     fragmentReplacements
 })
