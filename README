@@ -35,3 +35,16 @@ const prisma = new Prisma({
 -tác dụng của nó là kết nối prisma1 graphql và có thể thao tác nhanh, dùng nó cùng với graphql yoga để làm client cho người dùng, vì nó cũng nhưng middleware
 -đối với graphql prisma1 thì nó sẽ là thao tác cho admin
 -để kích hoạt cho graphql yoga thì bỏ prisma đó vào content sử dụng có thể xem trong resolvers
+
+
+#setup pisma io
+-tạo 1 servers  điền tên, description, chọn 1 trong 2 create database, 2 là connect database có sẵn, create database chỉ có thể tạo database của heroku => heroku sẽ tạo ra 1 ứng dụng và applie cái heroku posgres
+-tiếp theo setup server => vẫn chỉ có thể chọn heroku => giống system anaalis => có gam và cpu, gần như giống digital ocean, tạo ra cục server
+
+
+
+#setup deploy prisma1 configuration, sẽ có 2 playgrond cho admin 1 cái local 1 cái dành cho onl, ở trên là local, 2 file env 1 file dev, 1 cái prod onl
+-Đầu tiên tạo 2 file, 1 file dev, 1 file dành cho deploytrong configs, để giá trị endpoint vào file dev.env, prisma sẽ đọc endpoint và database tạo ra models trong sql
+-Đăng nhập prisma1 login, có thể bỏ hoặc thêm giống "endpoint: ${env:PRISMA_ENDPOINT}" về endpoint, sao đó gỏ lệnh prisma1 deploy -e ../configs/prod.env, deploy và đọc file env
+-giả sử không có endpint hoặc nhận endpoint trong thư mục env nhưng không tồn tại khi gỏ lệnh prisma1 deploy nó sẽ hỏi deploy lên server của ứng dụng app.prisma.io bạn mới vừa tạo ở trên hay không => nó sẽ hiện tên app đó, sao đó setup name , name của stage, 
+-prisma1 sẽ tạo ra 1 link cho endpoint, bạn nên bỏ link đó vào prod.env, sao đó nó đồng thời tạo ra table trong database => database nó là bên trong heroku mới vừa tạo ở bước trên, link đó là 1 link của playgound trên server
