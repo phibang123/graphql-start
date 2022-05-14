@@ -1,3 +1,8 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+# endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://app-blogging-f7c1dfc7dd.herokuapp.com/phibang-blogging/prod
 datamodel: datamodel.graphql
 secret: ${env:PRISMA_SECRET}
+
