@@ -11,7 +11,7 @@ const getUserId = (request,requereAutth = true) =>
   if (header)
   { 
     const token = header.replace("Bearer ", "")
-    const decoded = jwt.verify(token, "secret")
+    const decoded = jwt.verify(token, process.env.JWT_SECRET,)
     return decoded.userId
   }
   if (requereAutth)

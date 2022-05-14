@@ -9,7 +9,7 @@
     "get-schema": "graphql get-schema -p prisma1",
     "get-schema-2": "graphql-codegen --config ./codegen.yml",
     "dev": "./node_modules/.bin/env-cmd -f ./config/dev.env nodemon  src/index.js --ext js,graphql --exec babel-node",
-    "start-local": "./node_modules/.bin/env-cmd -f ./config/prod.env node dist/index.js"
+    "start-local": "./node_modules/.bin/env-cmd -f ./config/dev.env node dist/index.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
