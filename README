@@ -48,3 +48,4 @@ const prisma = new Prisma({
 -Đăng nhập prisma1 login, có thể bỏ hoặc thêm giống "endpoint: ${env:PRISMA_ENDPOINT}" về endpoint, sao đó gỏ lệnh prisma1 deploy -e ../configs/prod.env, deploy và đọc file env
 -giả sử không có endpint hoặc nhận endpoint trong thư mục env nhưng không tồn tại khi gỏ lệnh prisma1 deploy nó sẽ hỏi deploy lên server của ứng dụng app.prisma.io bạn mới vừa tạo ở trên hay không => nó sẽ hiện tên app đó, sao đó setup name , name của stage, 
 -prisma1 sẽ tạo ra 1 link cho endpoint, bạn nên bỏ link đó vào prod.env, sao đó nó đồng thời tạo ra table trong database => database nó là bên trong heroku mới vừa tạo ở bước trên, link đó là 1 link của playgound trên server
+!! lưu ý phải prisma1 token -e ../config/prod.env trước sao đó deploy
