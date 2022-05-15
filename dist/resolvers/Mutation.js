@@ -31,10 +31,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var Mutation = {
-  createUser: function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parent, args, _ref, info) {
-      var db = _ref.db,
-          prisma = _ref.prisma;
+  createUser: function createUser(parent, args, _ref, info) {
+    var _this = this;
+
+    var db = _ref.db,
+        prisma = _ref.prisma;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var user;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -61,18 +63,14 @@ var Mutation = {
               return _context.stop();
           }
         }
-      }, _callee, this);
-    }));
+      }, _callee, _this);
+    }))();
+  },
+  login: function login(parent, args, _ref2, info) {
+    var _this2 = this;
 
-    function createUser(_x, _x2, _x3, _x4) {
-      return _ref2.apply(this, arguments);
-    }
-
-    return createUser;
-  }(),
-  login: function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, args, _ref3, info) {
-      var prisma = _ref3.prisma;
+    var prisma = _ref2.prisma;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
       var user, isMatch;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -116,20 +114,14 @@ var Mutation = {
               return _context2.stop();
           }
         }
-      }, _callee2, this);
-    }));
-
-    function login(_x5, _x6, _x7, _x8) {
-      return _ref4.apply(this, arguments);
-    }
-
-    return login;
-  }(),
-  createPost: function createPost(parent, args, _ref5, info) {
-    var db = _ref5.db,
-        pubsub = _ref5.pubsub,
-        prisma = _ref5.prisma,
-        request = _ref5.request;
+      }, _callee2, _this2);
+    }))();
+  },
+  createPost: function createPost(parent, args, _ref3, info) {
+    var db = _ref3.db,
+        pubsub = _ref3.pubsub,
+        prisma = _ref3.prisma,
+        request = _ref3.request;
 
     //get the header value , parse out the token, verify  ...
 
@@ -148,12 +140,14 @@ var Mutation = {
       }
     }, info);
   },
-  createComment: function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, _ref6, info) {
-      var db = _ref6.db,
-          pubsub = _ref6.pubsub,
-          prisma = _ref6.prisma,
-          request = _ref6.request;
+  createComment: function createComment(parent, args, _ref4, info) {
+    var _this3 = this;
+
+    var db = _ref4.db,
+        pubsub = _ref4.pubsub,
+        prisma = _ref4.prisma,
+        request = _ref4.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
       var userId, postsExist;
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
@@ -206,20 +200,16 @@ var Mutation = {
               return _context3.stop();
           }
         }
-      }, _callee3, this);
-    }));
+      }, _callee3, _this3);
+    }))();
+  },
+  deleteUser: function deleteUser(parent, args, _ref5, info) {
+    var _this4 = this;
 
-    function createComment(_x9, _x10, _x11, _x12) {
-      return _ref7.apply(this, arguments);
-    }
-
-    return createComment;
-  }(),
-  deleteUser: function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, _ref8, info) {
-      var db = _ref8.db,
-          prisma = _ref8.prisma,
-          request = _ref8.request;
+    var db = _ref5.db,
+        prisma = _ref5.prisma,
+        request = _ref5.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
       var userId, commentExsist;
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
@@ -252,21 +242,17 @@ var Mutation = {
               return _context4.stop();
           }
         }
-      }, _callee4, this);
-    }));
+      }, _callee4, _this4);
+    }))();
+  },
+  deletePost: function deletePost(parents, args, _ref6, info) {
+    var _this5 = this;
 
-    function deleteUser(_x13, _x14, _x15, _x16) {
-      return _ref9.apply(this, arguments);
-    }
-
-    return deleteUser;
-  }(),
-  deletePost: function () {
-    var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parents, args, _ref10, info) {
-      var db = _ref10.db,
-          pubsub = _ref10.pubsub,
-          prisma = _ref10.prisma,
-          request = _ref10.request;
+    var db = _ref6.db,
+        pubsub = _ref6.pubsub,
+        prisma = _ref6.prisma,
+        request = _ref6.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
       var userId, postsExist;
       return regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
@@ -306,21 +292,17 @@ var Mutation = {
               return _context5.stop();
           }
         }
-      }, _callee5, this);
-    }));
+      }, _callee5, _this5);
+    }))();
+  },
+  deleteComment: function deleteComment(parents, args, _ref7, info) {
+    var _this6 = this;
 
-    function deletePost(_x17, _x18, _x19, _x20) {
-      return _ref11.apply(this, arguments);
-    }
-
-    return deletePost;
-  }(),
-  deleteComment: function () {
-    var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(parents, args, _ref12, info) {
-      var db = _ref12.db,
-          pubsub = _ref12.pubsub,
-          prisma = _ref12.prisma,
-          request = _ref12.request;
+    var db = _ref7.db,
+        pubsub = _ref7.pubsub,
+        prisma = _ref7.prisma,
+        request = _ref7.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
       var userId, commentExists;
       return regeneratorRuntime.wrap(function _callee6$(_context6) {
         while (1) {
@@ -359,20 +341,16 @@ var Mutation = {
               return _context6.stop();
           }
         }
-      }, _callee6, this);
-    }));
+      }, _callee6, _this6);
+    }))();
+  },
+  updateUser: function updateUser(parent, args, _ref8, info) {
+    var _this7 = this;
 
-    function deleteComment(_x21, _x22, _x23, _x24) {
-      return _ref13.apply(this, arguments);
-    }
-
-    return deleteComment;
-  }(),
-  updateUser: function () {
-    var _ref15 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(parent, args, _ref14, info) {
-      var db = _ref14.db,
-          prisma = _ref14.prisma,
-          request = _ref14.request;
+    var db = _ref8.db,
+        prisma = _ref8.prisma,
+        request = _ref8.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
       var userId;
       return regeneratorRuntime.wrap(function _callee7$(_context7) {
         while (1) {
@@ -395,21 +373,17 @@ var Mutation = {
               return _context7.stop();
           }
         }
-      }, _callee7, this);
-    }));
+      }, _callee7, _this7);
+    }))();
+  },
+  updatePost: function updatePost(parent, args, _ref9, info) {
+    var _this8 = this;
 
-    function updateUser(_x25, _x26, _x27, _x28) {
-      return _ref15.apply(this, arguments);
-    }
-
-    return updateUser;
-  }(),
-  updatePost: function () {
-    var _ref17 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(parent, args, _ref16, info) {
-      var db = _ref16.db,
-          pubsub = _ref16.pubsub,
-          prisma = _ref16.prisma,
-          request = _ref16.request;
+    var db = _ref9.db,
+        pubsub = _ref9.pubsub,
+        prisma = _ref9.prisma,
+        request = _ref9.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
       var userId, postExsist, isPublished;
       return regeneratorRuntime.wrap(function _callee8$(_context8) {
         while (1) {
@@ -472,21 +446,17 @@ var Mutation = {
               return _context8.stop();
           }
         }
-      }, _callee8, this);
-    }));
+      }, _callee8, _this8);
+    }))();
+  },
+  updateComment: function updateComment(parent, args, _ref10, info) {
+    var _this9 = this;
 
-    function updatePost(_x29, _x30, _x31, _x32) {
-      return _ref17.apply(this, arguments);
-    }
-
-    return updatePost;
-  }(),
-  updateComment: function () {
-    var _ref19 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(parent, args, _ref18, info) {
-      var db = _ref18.db,
-          pubsub = _ref18.pubsub,
-          prisma = _ref18.prisma,
-          request = _ref18.request;
+    var db = _ref10.db,
+        pubsub = _ref10.pubsub,
+        prisma = _ref10.prisma,
+        request = _ref10.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
       var userId, commentExists;
       return regeneratorRuntime.wrap(function _callee9$(_context9) {
         while (1) {
@@ -526,15 +496,9 @@ var Mutation = {
               return _context9.stop();
           }
         }
-      }, _callee9, this);
-    }));
-
-    function updateComment(_x33, _x34, _x35, _x36) {
-      return _ref19.apply(this, arguments);
-    }
-
-    return updateComment;
-  }()
+      }, _callee9, _this9);
+    }))();
+  }
 };
 
 exports.default = Mutation;

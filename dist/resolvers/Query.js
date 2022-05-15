@@ -104,11 +104,13 @@ var Query = {
     };
     return prisma.query.comments(opArgs, info);
   },
-  post: function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parent, args, _ref5, info) {
-      var db = _ref5.db,
-          prisma = _ref5.prisma,
-          request = _ref5.request;
+  post: function post(parent, args, _ref5, info) {
+    var _this = this;
+
+    var db = _ref5.db,
+        prisma = _ref5.prisma,
+        request = _ref5.request;
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var userId, post;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -155,19 +157,13 @@ var Query = {
               return _context.stop();
           }
         }
-      }, _callee, this);
-    }));
-
-    function post(_x, _x2, _x3, _x4) {
-      return _ref6.apply(this, arguments);
-    }
-
-    return post;
-  }(),
-  myPosts: function myPosts(parent, args, _ref7, info) {
-    var db = _ref7.db,
-        prisma = _ref7.prisma,
-        request = _ref7.request;
+      }, _callee, _this);
+    }))();
+  },
+  myPosts: function myPosts(parent, args, _ref6, info) {
+    var db = _ref6.db,
+        prisma = _ref6.prisma,
+        request = _ref6.request;
 
     var userId = (0, _getUser2.default)(request);
     var opArgs = {

@@ -1,6 +1,6 @@
 {
   "presets": [
-   "@babel/preset-env"
+    "env","es2015", "stage-0" 
   ],
   "plugins": [
     ["transform-object-rest-spread", { "useBuiltIns": true }]
