@@ -6,7 +6,7 @@
 schema:
   - http://localhost:4466:
       headers:
-        Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNjUxNjg1NDU1LCJleHAiOjE2NTIyOTAyNTV9.y8P2AFri6N44NfgybML2UmW4N5DnMvTQaxa_lbtf094
+        Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJwaGliYW5nLWJsb2dnaW5nQHByb2QiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNjUyNTM1NjYxLCJleHAiOjE2NTMxNDA0NjF9.qli7OsWZ9Ua8k30VuOjsFtBze9t5gxpcJVNlx4RusRc
 extensions:
   codegen:
     generates:

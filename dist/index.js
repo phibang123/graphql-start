@@ -4,7 +4,7 @@ var _prisma = require("./prisma");
 
 var _prisma2 = _interopRequireDefault(_prisma);
 
-require("@babel/polyfill");
+require("@babel/polyfill/noConflict");
 
 var _graphqlYoga = require("graphql-yoga");
 
@@ -26,12 +26,15 @@ var _load = require("@graphql-tools/load");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import "@babel/polyfill" 
 var typeDefs = (0, _load.loadSchemaSync)((0, _path.join)(__dirname, 'graphql/schema.graphql'), { loaders: [new _graphqlFileLoader.GraphQLFileLoader()] });
 
 // const schemaWithResolvers = addResolversToSchema({
 //   typeDefs,
 //   resolvers
 // })
+//điều này tránh xung đột, chỉ cần loadding phiên bản gốc không cần tải thư viện như mấy cái @bebel trong dev -_-  
+
 var pubsub = new _graphqlSubscriptions.PubSub();
 
 var server = new _graphqlYoga.createServer({

@@ -20,7 +20,7 @@ var getUserId = function getUserId(request) {
 
   if (header) {
     var token = header.replace("Bearer ", "");
-    var decoded = _jsonwebtoken2.default.verify(token, "secret");
+    var decoded = _jsonwebtoken2.default.verify(token, process.env.JWT_SECRET);
     return decoded.userId;
   }
   if (requereAutth) {

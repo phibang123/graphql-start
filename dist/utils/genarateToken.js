@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var generatedToken = function generatedToken(userId) {
   return _jsonwebtoken2.default.sign({
     userId: userId
-  }, 'secret', {
+  }, process.env.JWT_SECRET, {
     expiresIn: '7days'
   });
 };
