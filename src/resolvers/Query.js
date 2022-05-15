@@ -2,26 +2,7 @@ import { GraphQLYogaError } from 'graphql-yoga';
 import getUserId from '../utils/getUser';
 
 const Query = {
-  // title()
-  // {
-  //   return "The war of Art"
-  // },
-  // price()
-  // {
-  //   return 12.90
-  // },
-  // releaseYear()
-  // {
-  //   return null
-  // },
-  // rating()
-  // {
-  //   return 1
-  // },
-  // inStock()
-  // {
-  //   return true
-  // }
+  
 
   users(parent, args, { db, prisma }, info) {
     const opArgs = {
@@ -40,15 +21,16 @@ const Query = {
         },
       ];
     }
+    console.log(opArgs)
     return prisma.query.users(opArgs, info);
   },
   posts(parent, args, { db, prisma }, info) {
     const opArgs = {
+      first: args.first,
+      skip: args.skip,
+      orderBy: args.orderBy,
       where: {
-        first: args.first,
-        skip: args.skip,
         published: true,
-        orderBy: args.orderBy
       },
     };
     if (args.query) {
@@ -64,6 +46,7 @@ const Query = {
         },
       ];
     }
+
     return prisma.query.posts(opArgs, info);
   },
   me(parent, args, { db, prisma, request }, info) {

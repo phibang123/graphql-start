@@ -9,7 +9,7 @@
     "get-schema": "graphql get-schema -p prisma1",
     "get-schema-2": "graphql-codegen --config ./codegen.yml --dotenv config/dev.env",
     "dev": "./node_modules/.bin/env-cmd -f ./config/dev.env nodemon  src/index.js --ext js,graphql --exec babel-node",
-    "test": "jest --watch",
+    "test": "jest --watch --runInBand",
     "start-local": "./node_modules/.bin/env-cmd -f ./config/dev.env node dist/index.js"
   },
   "dependencies": {
@@ -38,7 +38,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.5",
     "babel-preset-stage-0": "^6.24.1",
-    "jest": "^28.1.0",
+    "jest": "23.5.0",
     "nodemon": "^2.0.15"
   }
 }
