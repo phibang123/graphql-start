@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _graphqlYoga = require("graphql-yoga");
-
 var _jsonwebtoken = require("jsonwebtoken");
 
 var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
@@ -24,10 +22,11 @@ var getUserId = function getUserId(request) {
     return decoded.userId;
   }
   if (requereAutth) {
-    throw new _graphqlYoga.GraphQLYogaError("Token not exsist, please login");
+    throw new Error("Token not exsist, please login");
   }
 
   return null;
-};
-
+}; // import {
+// 	GraphQLYogaError
+// } from "graphql-yoga";
 exports.default = getUserId;

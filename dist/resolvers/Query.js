@@ -4,15 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _graphqlYoga = require('graphql-yoga');
-
 var _getUser = require('../utils/getUser');
 
 var _getUser2 = _interopRequireDefault(_getUser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } // import { GraphQLYogaError } from 'graphql-yoga';
+
 
 var Query = {
   users: function users(parent, args, _ref, info) {
@@ -32,7 +31,6 @@ var Query = {
         email_contains: args.query
       }];
     }
-    console.log(opArgs);
     return prisma.query.users(opArgs, info);
   },
   posts: function posts(parent, args, _ref2, info) {
@@ -128,7 +126,7 @@ var Query = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('posts not found ');
+              throw new Error('posts not found ');
 
             case 6:
               return _context.abrupt('return', post[0]);

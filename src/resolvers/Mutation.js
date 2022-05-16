@@ -1,4 +1,4 @@
-import { GraphQLYogaError } from 'graphql-yoga';
+// import { GraphQLYogaError } from 'graphql-yoga';
 import bcrypt from 'bcryptjs';
 import generatedToken from '../utils/genarateToken';
 import getUserId from '../utils/getUser';
@@ -27,13 +27,13 @@ const Mutation = {
       },
     });
     if (!user) {
-      throw new GraphQLYogaError('Unable login');
+      throw new Error('Unable login');
     }
 
     const isMatch = bcrypt.compareSync(args.data.password, user.password);
 
     if (!isMatch) {
-      throw new GraphQLYogaError('Unable login');
+      throw new Error('Unable login');
     }
 
     return {
@@ -80,7 +80,7 @@ const Mutation = {
     });
     console.log(postsExist);
     if (!postsExist) {
-      throw new GraphQLYogaError('Post not found');
+      throw new Error('Post not found');
     }
 
     return prisma.mutation.createComment(
@@ -112,7 +112,7 @@ const Mutation = {
     });
 
     if (!commentExsist) {
-      throw new GraphQLYogaError('Comment not exists');
+      throw new Error('Comment not exists');
     }
     return prisma.mutation.deleteUser(
       {
@@ -132,7 +132,7 @@ const Mutation = {
       },
     });
     if (!postsExist) {
-      throw new GraphQLYogaError('Posts not exists');
+      throw new Error('Posts not exists');
     }
     return prisma.mutation.deletePost(
       {
@@ -157,7 +157,7 @@ const Mutation = {
       },
     });
     if (!commentExists) {
-      throw new GraphQLYogaError('Comment not exsits');
+      throw new Error('Comment not exsits');
     }
     return prisma.mutation.deleteComment(
       {
@@ -200,7 +200,7 @@ const Mutation = {
     console.log(isPublished)
     
     if (!postExsist) {
-      throw new GraphQLYogaError('Post not exists');
+      throw new Error('Post not exists');
     }
     if (isPublished && args.data.published === false) {
       await prisma.mutation.deleteManyComments({
@@ -232,7 +232,7 @@ const Mutation = {
       },
     });
     if (!commentExists) {
-      throw new GraphQLYogaError('Comment not exsits');
+      throw new Error('Comment not exsits');
     }
     return prisma.mutation.updateComment(
       {

@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _graphqlYoga = require('graphql-yoga');
-
 var _bcryptjs = require('bcryptjs');
 
 var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
@@ -28,7 +26,8 @@ var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } // import { GraphQLYogaError } from 'graphql-yoga';
+
 
 var Mutation = {
   createUser: function createUser(parent, args, _ref, info) {
@@ -91,7 +90,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Unable login');
+              throw new Error('Unable login');
 
             case 5:
               isMatch = _bcryptjs2.default.compareSync(args.data.password, user.password);
@@ -101,7 +100,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Unable login');
+              throw new Error('Unable login');
 
             case 8:
               return _context2.abrupt('return', {
@@ -176,7 +175,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Post not found');
+              throw new Error('Post not found');
 
             case 7:
               return _context3.abrupt('return', prisma.mutation.createComment({
@@ -228,7 +227,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Comment not exists');
+              throw new Error('Comment not exists');
 
             case 4:
               return _context4.abrupt('return', prisma.mutation.deleteUser({
@@ -275,7 +274,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Posts not exists');
+              throw new Error('Posts not exists');
 
             case 6:
               return _context5.abrupt('return', prisma.mutation.deletePost({
@@ -327,7 +326,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Comment not exsits');
+              throw new Error('Comment not exsits');
 
             case 6:
               return _context6.abrupt('return', prisma.mutation.deleteComment({
@@ -416,7 +415,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Post not exists');
+              throw new Error('Post not exists');
 
             case 10:
               if (!(isPublished && args.data.published === false)) {
@@ -481,7 +480,7 @@ var Mutation = {
                 break;
               }
 
-              throw new _graphqlYoga.GraphQLYogaError('Comment not exsits');
+              throw new Error('Comment not exsits');
 
             case 6:
               return _context9.abrupt('return', prisma.mutation.updateComment({

@@ -9,19 +9,26 @@
     "get-schema": "graphql get-schema -p prisma1",
     "get-schema-2": "graphql-codegen --config ./codegen.yml --dotenv config/dev.env",
     "dev": "./node_modules/.bin/env-cmd -f ./config/dev.env nodemon  src/index.js --ext js,graphql --exec babel-node",
-    "test": "jest --watch --runInBand",
+    "test": "./node_modules/.bin/env-cmd  -f ./config/test.env jest --runInBand",
     "start-local": "./node_modules/.bin/env-cmd -f ./config/dev.env node dist/index.js"
+  },
+  "jest": {
+    "globalSetup": "./tests/jest/globalSetup.js",
+    "globalTeardown": "./tests/jest/globalTeardown.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.17.10",
     "@graphql-tools/schema": "^8.3.11",
     "@graphql-yoga/node": "^2.2.1",
+    "apollo-boost": "^0.4.9",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
+    "cross-fetch": "^3.1.5",
     "env-cmd": "^10.1.0",
     "graphql": "14.6.0",
     "graphql-cli": "^4.1.0",

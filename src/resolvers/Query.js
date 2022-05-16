@@ -1,4 +1,4 @@
-import { GraphQLYogaError } from 'graphql-yoga';
+// import { GraphQLYogaError } from 'graphql-yoga';
 import getUserId from '../utils/getUser';
 
 const Query = {
@@ -21,7 +21,6 @@ const Query = {
         },
       ];
     }
-    console.log(opArgs)
     return prisma.query.users(opArgs, info);
   },
   posts(parent, args, { db, prisma }, info) {
@@ -96,7 +95,7 @@ const Query = {
       info
     );
     if (post.length === 0) {
-      throw new GraphQLYogaError('posts not found ');
+      throw new Error('posts not found ');
     }
     return post[0];
   },

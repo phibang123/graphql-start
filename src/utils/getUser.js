@@ -1,6 +1,6 @@
-import {
-	GraphQLYogaError
-} from "graphql-yoga";
+// import {
+// 	GraphQLYogaError
+// } from "graphql-yoga";
 import jwt from "jsonwebtoken"
 
 const getUserId = (request,requereAutth = true) =>
@@ -16,7 +16,7 @@ const getUserId = (request,requereAutth = true) =>
   }
   if (requereAutth)
   {
-    throw new GraphQLYogaError("Token not exsist, please login")
+    throw new Error("Token not exsist, please login")
   }
   
   return null 
