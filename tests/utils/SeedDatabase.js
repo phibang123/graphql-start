@@ -1,42 +1,40 @@
-import bcrypt from "bcryptjs"
-import prisma from "../../src/prisma"
+import bcrypt from 'bcryptjs'
+import prisma from '../../src/prisma'
 
-const seedDatabase = async () =>
-{
+const seedDatabase = async () => {
     await prisma.mutation.deleteManyPosts()
     await prisma.mutation.deleteManyUsers()
-    const userCreateBefore = await prisma.mutation.createUser({
+    const user = await prisma.mutation.createUser({
         data: {
-            name: "Chánh",
-            email: "c@gmail.com",
-            password: bcrypt.hashSync("11111111", 10),
-            age: 12
+            name: 'Jen',
+            email: 'jen@example.com',
+            password: bcrypt.hashSync('Red098!@#$')
         }
     })
     await prisma.mutation.createPost({
         data: {
-            title: "Lên công ty",
-            body: "làm việc trên công ty",
+            title: 'My published post',
+            body: '',
             published: true,
             author: {
                 connect: {
-                    id: userCreateBefore.id
+                    id: user.id
                 }
             }
         }
     })
     await prisma.mutation.createPost({
         data: {
-            title: "đi ăn bò nướng tảng",
-            body: "Lợi mời đi ăn bò nướng tảng",
+            title: 'My draft post',
+            body: '',
             published: false,
             author: {
                 connect: {
-                    id: userCreateBefore.id
+                    id: user.id
                 }
             }
         }
     })
- }
+}
 
- export default seedDatabase
+export { seedDatabase as default }
